@@ -164,3 +164,10 @@ export async function claimGift(accountId: string): Promise<void> {
 export async function startBrowserLogin(): Promise<void> {
   return invoke("start_browser_login");
 }
+
+// ============ 平台检测 ============
+
+// 获取当前操作系统平台 ("windows" | "macos" | "linux")
+export async function getPlatform(): Promise<string> {
+  return invoke("get_platform");
+}

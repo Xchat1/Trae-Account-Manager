@@ -201,6 +201,12 @@ async fn claim_gift(account_id: String, state: State<'_, AppState>) -> Result<()
     manager.claim_birthday_bonus(&account_id).await.map_err(Into::into)
 }
 
+/// 获取当前操作系统平台
+#[tauri::command]
+async fn get_platform() -> Result<String> {
+    Ok(std::env::consts::OS.to_string())
+}
+
 /// 浏览器登录
 #[tauri::command]
 async fn start_browser_login(app: tauri::AppHandle, state: State<'_, AppState>) -> Result<()> {
@@ -245,6 +251,7 @@ pub fn run() {
             refresh_token,
             refresh_all_tokens,
             start_browser_login,
+            get_platform,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

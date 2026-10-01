@@ -13,6 +13,9 @@ export function Settings({ onToast }: SettingsProps) {
   const [traePath, setTraePath] = useState<string>("");
   const [traePathLoading, setTraePathLoading] = useState(false);
   const [scanning, setScanning] = useState(false);
+  const [platform, setPlatform] = useState<string>("windows");
+
+  const isMac = platform === "macos";
 
   // 加载 Trae IDE 机器码
   const loadTraeMachineId = async () => {
@@ -43,6 +46,7 @@ export function Settings({ onToast }: SettingsProps) {
   };
 
   useEffect(() => {
+    api.getPlatform().then(setPlatform).catch(() => {});
     loadTraeMachineId();
     loadTraePath();
   }, []);
@@ -92,14 +96,17 @@ export function Settings({ onToast }: SettingsProps) {
   // 手动设置 Trae IDE 路径
   const handleSetTraePath = async () => {
     try {
-      const selected = await open({
-        multiple: false,
-        filters: [{
-          name: "Trae IDE",
-          extensions: ["exe"]
-        }],
-        title: "选择 Trae.exe 文件"
-      });
+      const selected = isMac
+        ? await open({
+            multiple: false,
+            directory: false,
+            title: "选择 Trae.app 应用程序",
+          })
+        : await open({
+            multiple: false,
+            filters: [{ name: "Trae IDE", extensions: ["exe"] }],
+            title: "选择 Trae.exe 文件",
+          });
 
       if (selected) {
         const path = selected as string;
@@ -232,7 +239,7 @@ export function Settings({ onToast }: SettingsProps) {
               <path d="M12 16v-4"/>
               <path d="M12 8h.01"/>
             </svg>
-            <span>切换账号后会自动打开客户端。如果自动扫描找不到，请手动设置 Trae.exe 的完整路径。</span>
+            <span>切换账号后会自动打开客户端。如果自动扫描找不到，请手动设置 {isMac ? "Trae.app" : "Trae.exe"} 的完整路径。</span>
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@
 
 ![Trae Account Manager](https://img.shields.io/badge/Trae-Account%20Manager-blue?style=for-the-badge)
 ![Version](https://img.shields.io/badge/version-1.0.0-green?style=for-the-badge)
-![Platform](https://img.shields.io/badge/platform-Windows-lightgrey?style=for-the-badge)
+![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS-lightgrey?style=for-the-badge)
 ![License](https://img.shields.io/badge/license-MIT-orange?style=for-the-badge)
 
 **一款强大的 Trae IDE 多账号管理工具**
@@ -130,7 +130,7 @@ Trae Account Manager 是一款专为 Trae IDE 用户打造的多账号管理工�
 
 - ✅ **Trae IDE 路径配置**
   - 自动扫描 Trae IDE 安装路径
-  - 手动选择 Trae.exe 文件
+  - 手动选择 Trae.exe (Windows) 或 Trae.app (macOS)
   - 保存路径配置
   - 切换账号后自动打开 Trae IDE
 
@@ -158,7 +158,7 @@ Trae Account Manager 是一款专为 Trae IDE 用户打造的多账号管理工�
 
 ### 📋 系统要求
 
-- Windows 10/11
+- Windows 10/11 或 macOS 10.15+（支持 Intel 和 Apple Silicon/M1-M4）
 - Trae IDE 已安装
 - Node.js 16+ (开发环境)
 
@@ -197,7 +197,7 @@ npm run tauri build
 1. 打开应用后，点击左侧菜单的 **设置**
 2. 在 "Trae IDE 路径" 部分：
    - 点击 **自动扫描** 按钮，系统会自动查找 Trae IDE
-   - 或点击 **手动设置** 按钮，选择 `Trae.exe` 文件位置
+   - 或点击 **手动设置** 按钮，选择 `Trae.exe` (Windows) 或 `Trae.app` (macOS)
 3. 路径配置成功后会显示完整路径
 
 ### 2️⃣ 添加账号
@@ -314,7 +314,7 @@ npm run tauri build
 
 **A:** 请检查以下几点：
 1. 确认已在设置中配置了正确的 Trae IDE 路径
-2. 确认 Trae.exe 文件存在且可执行
+2. 确认 Trae.exe (Windows) 或 Trae.app (macOS) 文件存在且可执行
 3. 查看应用日志，确认是否有错误信息
 
 ### Q2: 添加账号时提示 Token 无效？
@@ -343,12 +343,13 @@ npm run tauri build
 
 **A:**
 - Windows: `%APPDATA%\com.sauce.trae-auto\`
+- macOS: `~/Library/Application Support/com.sauce.trae-auto/`
 - 包含账号信息、配置等数据
 
 ### Q6: 支持 macOS 吗？
 
 **A:**
-目前仅支持 Windows 平台。macOS 版本正在开发中，敬请期待！
+支持！本工具已全面支持 macOS 平台（包括 Intel 和 Apple Silicon M1/M2/M3/M4 芯片）。
 
 > 注：Trae IDE 官方支持 Windows 和 macOS，但不支持 Linux。
 
@@ -375,7 +376,7 @@ npm run tauri build
 
 - **账号管理** - 多账号存储与切换
 - **API 客户端** - Trae API 交互
-- **机器码管理** - Windows 注册表操作
+- **机器码管理** - Windows 注册表 / macOS IOPlatformUUID 操作
 - **文件系统** - Trae IDE 配置文件操作
 - **进程管理** - Trae IDE 进程控制
 
@@ -452,7 +453,7 @@ Trae-Account-Manager/
 
 ### 🚀 远期计划
 
-- [ ] 支持 macOS 平台
+- [x] 支持 macOS 平台（已完成）
 - [ ] 添加账号使用提醒
 - [ ] 支持多语言（英文、日文等）
 - [ ] 添加账号使用报表导出
